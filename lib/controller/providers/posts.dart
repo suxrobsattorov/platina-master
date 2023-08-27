@@ -33,4 +33,10 @@ class Posts with ChangeNotifier {
       rethrow;
     }
   }
+
+  Result? findById(int postId) {
+    return _post != null
+        ? _post?.results.firstWhere((element) => element.id == postId)
+        : null;
+  }
 }

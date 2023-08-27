@@ -5,6 +5,7 @@ import '../../../model/post.dart';
 import '../../constants/colors.dart';
 import '../../constants/icons.dart';
 import '../../functions/util_function.dart';
+import '../../screens/post_details.dart';
 
 // ignore: must_be_immutable
 class EditorsChoice extends StatelessWidget {
@@ -66,65 +67,69 @@ class EditorsChoice extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: postList.length,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.only(
-                    left: 16,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 15),
-                      Container(
-                        width: 300,
-                        height: 240,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: NetworkImage(api + postList[index].image),
-                            fit: BoxFit.cover,
-                          ),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                      ),
-                      const SizedBox(height: 15),
-                      SizedBox(
-                        height: 75,
-                        width: 300,
-                        child: Text(
-                          function.replaceTitle(postList[index]
-                              .title),
-                          style: const TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.black,
+                return InkWell(
+                  onTap: () => Navigator.of(context).pushNamed(
+                      PostDetailsScreen.routeName,
+                      arguments: postList[index].id),
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(height: 15),
+                        Container(
+                          width: 300,
+                          height: 240,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(api + postList[index].image),
+                              fit: BoxFit.cover,
+                            ),
+                            borderRadius: BorderRadius.circular(16),
                           ),
                         ),
-                      ),
-                      const SizedBox(height: 15),
-                      Row(
-                        children: [
-                          Text(
-                            postList[index].category.name,
+                        const SizedBox(height: 15),
+                        SizedBox(
+                          height: 75,
+                          width: 300,
+                          child: Text(
+                            function.replaceTitle(postList[index].title),
                             style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.deepOrange,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.black,
                             ),
                           ),
-                          const SizedBox(width: 20),
-                          Text(
-                            function.beforeTime(
-                                        postList[index].publish.toString()) ==
-                                    ''
-                                ? ''
-                                : function.beforeTime(
-                                    postList[index].publish.toString()),
-                            style: const TextStyle(
-                              fontSize: 14,
-                              color: Colors.grey,
+                        ),
+                        const SizedBox(height: 15),
+                        Row(
+                          children: [
+                            Text(
+                              postList[index].category.name,
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.deepOrange,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                    ],
+                            const SizedBox(width: 20),
+                            Text(
+                              function.beforeTime(
+                                          postList[index].publish.toString()) ==
+                                      ''
+                                  ? ''
+                                  : function.beforeTime(
+                                      postList[index].publish.toString()),
+                              style: const TextStyle(
+                                fontSize: 14,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 );
               },

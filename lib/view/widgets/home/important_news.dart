@@ -6,6 +6,7 @@ import 'package:platina/view/functions/util_function.dart';
 import 'package:platina/view/widgets/home/post_container.dart';
 
 import '../../../model/post.dart';
+import '../../screens/post_details.dart';
 
 // ignore: must_be_immutable
 class ImportantNews extends StatelessWidget {
@@ -58,69 +59,79 @@ class ImportantNews extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 15),
-          Container(
-            width: double.infinity,
-            height: 240,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(api + postList[0].image),
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.circular(16),
-            ),
-          ),
-          const SizedBox(height: 15),
-          Text(
-            function.replaceTitle(postList[0].title),
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: Colors.black,
-            ),
-          ),
-          const SizedBox(height: 15),
-          Text(
-            postList[0]
-                .shortDescription
-                .replaceAll('</p>', '')
-                .replaceAll('<p>', '')
-                .replaceAll('&nbsp', '')
-                .replaceAll(';', '')
-                .trimRight(),
-            style: const TextStyle(
-              fontSize: 14,
-              color: Colors.grey,
-            ),
-          ),
-          const SizedBox(height: 5),
-          const Text(
-            'davomini o\'qish',
-            style: TextStyle(
-              fontSize: 14,
-              color: Colors.blue,
-            ),
-          ),
-          const SizedBox(height: 15),
-          Row(
-            children: [
-              Text(
-                postList[0].category.name,
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.deepOrange,
+          InkWell(
+            onTap: () => Navigator.of(context).pushNamed(
+                PostDetailsScreen.routeName,
+                arguments: postList[0].id),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  width: double.infinity,
+                  height: 240,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(api + postList[0].image),
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                 ),
-              ),
-              const SizedBox(width: 20),
-              Text(
-                function.beforeTime(postList[0].publish.toString()) == ''
-                    ? ''
-                    : function.beforeTime(postList[0].publish.toString()),
-                style: const TextStyle(
-                  fontSize: 14,
-                  color: Colors.grey,
+                const SizedBox(height: 15),
+                Text(
+                  function.replaceTitle(postList[0].title),
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.black,
+                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 15),
+                Text(
+                  postList[0]
+                      .shortDescription
+                      .replaceAll('</p>', '')
+                      .replaceAll('<p>', '')
+                      .replaceAll('&nbsp', '')
+                      .replaceAll(';', '')
+                      .trimRight(),
+                  style: const TextStyle(
+                    fontSize: 14,
+                    color: Colors.grey,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                const Text(
+                  'davomini o\'qish',
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.blue,
+                  ),
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  children: [
+                    Text(
+                      postList[0].category.name,
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.deepOrange,
+                      ),
+                    ),
+                    const SizedBox(width: 20),
+                    Text(
+                      function.beforeTime(postList[0].publish.toString()) == ''
+                          ? ''
+                          : function.beforeTime(postList[0].publish.toString()),
+                      style: const TextStyle(
+                        fontSize: 14,
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 15),
           Container(
@@ -130,6 +141,7 @@ class ImportantNews extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           PostContainer(
+            id: postList[1].id,
             title: postList[1].title,
             date: postList[1].publish.toString() == ''
                 ? ''
@@ -146,6 +158,7 @@ class ImportantNews extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           PostContainer(
+            id: postList[2].id,
             title: postList[2].title,
             date: postList[2].publish.toString() == ''
                 ? ''
@@ -162,6 +175,7 @@ class ImportantNews extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           PostContainer(
+            id: postList[3].id,
             title: postList[3].title,
             date: postList[3].publish.toString() == ''
                 ? ''
@@ -178,6 +192,7 @@ class ImportantNews extends StatelessWidget {
           ),
           const SizedBox(height: 15),
           PostContainer(
+            id: postList[4].id,
             title: postList[4].title,
             date: postList[4].publish.toString() == ''
                 ? ''

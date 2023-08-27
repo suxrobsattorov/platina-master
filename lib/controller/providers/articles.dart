@@ -33,4 +33,10 @@ class Articles with ChangeNotifier {
       rethrow;
     }
   }
+
+  Result? findById(int articleId) {
+    return _article != null
+        ? _article?.results.firstWhere((article) => article.id == articleId)
+        : null;
+  }
 }

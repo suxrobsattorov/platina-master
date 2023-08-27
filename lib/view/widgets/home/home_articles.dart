@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:platina/view/screens/article_details.dart';
+import 'package:platina/view/screens/article_details.dart';
+import 'package:platina/view/screens/article_details.dart';
+import 'package:platina/view/screens/article_details.dart';
 import 'package:platina/view/widgets/home/ArticleItem.dart';
 import 'package:provider/provider.dart';
 
 import '../../../controller/providers/articles.dart';
 import '../../constants/colors.dart';
 import '../../constants/icons.dart';
+import '../../screens/post_details.dart';
 
 class HomeArticles extends StatelessWidget {
   const HomeArticles({super.key});
@@ -55,24 +60,44 @@ class HomeArticles extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 15),
-                ArticleItem(
-                  image: as[0].image,
-                  title: as[0].title,
+                InkWell(
+                  onTap: () => Navigator.of(context).pushNamed(
+                      ArticleDetailsScreen.routeName,
+                      arguments: as[0].id),
+                  child: ArticleItem(
+                    image: as[0].image,
+                    title: as[0].title,
+                  ),
                 ),
                 const SizedBox(height: 10),
-                ArticleItem(
-                  image: as[1].image,
-                  title: as[1].title,
+                InkWell(
+                  onTap: () => Navigator.of(context).pushNamed(
+                      ArticleDetailsScreen.routeName,
+                      arguments: as[1].id),
+                  child: ArticleItem(
+                    image: as[1].image,
+                    title: as[1].title,
+                  ),
                 ),
                 const SizedBox(height: 10),
-                ArticleItem(
-                  image: as[2].image,
-                  title: as[2].title,
+                InkWell(
+                  onTap: () => Navigator.of(context).pushNamed(
+                      ArticleDetailsScreen.routeName,
+                      arguments: as[2].id),
+                  child: ArticleItem(
+                    image: as[2].image,
+                    title: as[2].title,
+                  ),
                 ),
                 const SizedBox(height: 10),
-                ArticleItem(
-                  image: as[3].image,
-                  title: as[3].title,
+                InkWell(
+                  onTap: () => Navigator.of(context).pushNamed(
+                      ArticleDetailsScreen.routeName,
+                      arguments: as[3].id),
+                  child: ArticleItem(
+                    image: as[3].image,
+                    title: as[3].title,
+                  ),
                 ),
               ],
             ),

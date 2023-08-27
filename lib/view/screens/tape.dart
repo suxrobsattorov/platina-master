@@ -7,6 +7,8 @@ import 'package:provider/provider.dart';
 class TapeScreen extends StatelessWidget {
   const TapeScreen({super.key});
 
+  static const routeName = '/tape-screen';
+
   @override
   Widget build(BuildContext context) {
     Post post = Provider.of<Posts>(context).response;
@@ -18,6 +20,7 @@ class TapeScreen extends StatelessWidget {
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(16),
                 child: PostContainer(
+                  id: post.results[index].id,
                   title: post.results[index].title,
                   date: post.results[index].publish.toString(),
                   image: post.results[index].imageSmall,

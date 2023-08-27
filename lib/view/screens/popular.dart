@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:platina/view/screens/post_details.dart';
 import 'package:platina/view/widgets/home/ArticleItem.dart';
 import 'package:provider/provider.dart';
 
@@ -7,6 +8,8 @@ import '../../model/post.dart';
 
 class PopularScreen extends StatelessWidget {
   const PopularScreen({super.key});
+
+  static const routeName = '/popular-screen';
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +21,14 @@ class PopularScreen extends StatelessWidget {
               itemCount: post.results.length,
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.all(16),
-                child: ArticleItem(
-                    image: post.results[index].image,
-                    title: post.results[index].title),
+                child: InkWell(
+                  onTap: () => Navigator.of(context).pushNamed(
+                      PostDetailsScreen.routeName,
+                      arguments:  post.results[index].id),
+                  child: ArticleItem(
+                      image: post.results[index].image,
+                      title: post.results[index].title),
+                ),
               ),
             )
           : const Center(

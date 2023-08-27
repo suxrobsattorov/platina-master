@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:platina/controller/providers/articles.dart';
+import 'package:platina/view/screens/article_details.dart';
+import 'package:platina/view/screens/post_details.dart';
 import 'package:platina/view/widgets/home/ArticleItem.dart';
 import 'package:provider/provider.dart';
 
 class ArticleScreen extends StatelessWidget {
   const ArticleScreen({super.key});
+
+  static const routeName = '/article-screen';
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +23,13 @@ class ArticleScreen extends StatelessWidget {
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.all(16),
-                      child: ArticleItem(
-                          image: as[index].image, title: as[index].title),
+                      child: InkWell(
+                        onTap: () => Navigator.of(context).pushNamed(
+                            ArticleDetailsScreen.routeName,
+                            arguments: as[index].id),
+                        child: ArticleItem(
+                            image: as[index].image, title: as[index].title),
+                      ),
                     );
                   },
                 )
